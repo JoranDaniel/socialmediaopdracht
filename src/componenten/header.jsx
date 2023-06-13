@@ -11,7 +11,7 @@ const Header = () => {
 
   return (
     <div className="header-container">
-      <h1 className="header-title">My App</h1>
+    
       {!isLoginFormOpen && (
         <button className="login-button" onClick={toggleLoginForm}>
           Login

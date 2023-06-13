@@ -4,13 +4,13 @@ import 'firebase/compat/firestore';
 
 // Your web app's Firebase configuration
 const firebaseConfig = {
-  apiKey: "AIzaSyDrfTpuEKrxcVprf0DmG8-rfQP3Ie8Pv_w",
-  authDomain: "desktoprating.firebaseapp.com",
-  projectId: "desktoprating",
-  storageBucket: "desktoprating.appspot.com",
-  messagingSenderId: "270518145301",
-  appId: "1:270518145301:web:e0fc0174cc5ad472cd991c",
-  measurementId: "G-YNZN92VXXM"
+  apiKey: "AIzaSyCK-N5U95s_dWbW54QWus3tZKVp4P6HIZ4",
+  authDomain: "socialmediaopdracht-10251.firebaseapp.com",
+  projectId: "socialmediaopdracht-10251",
+  storageBucket: "socialmediaopdracht-10251.appspot.com",
+  messagingSenderId: "817959513902",
+  appId: "1:817959513902:web:fe89adb3e00e1f2479d4bf",
+  measurementId: "G-V9C2NP02D5"
 };
 
 // Initialize Firebase

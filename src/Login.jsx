@@ -8,6 +8,9 @@ const Login = ({ onLogout }) => {
   const [loginSuccess, setLoginSuccess] = useState(false);
   const [errorMessage, setErrorMessage] = useState('');
   const [isFormOpen, setIsFormOpen] = useState(false);
+  const [isAccountOpen, setIsAccountOpen] = useState(false);
+  const [name, setName] = useState('');
+  const [newPassword, setNewPassword] = useState('');
 
   const handleEmailChange = (event) => {
     setEmail(event.target.value);
@@ -38,11 +41,37 @@ const Login = ({ onLogout }) => {
     setIsFormOpen(!isFormOpen);
   };
 
+  const toggleAccount = () => {
+    setIsAccountOpen(!isAccountOpen);
+  };
+
+  const handleNameChange = (event) => {
+    setName(event.target.value);
+  };
+
+  const handleNewPasswordChange = (event) => {
+    setNewPassword(event.target.value);
+  };
+  const handleLogout = () => {
+    // Voer hier de logica uit voor uitloggen
+    // Roep de onLogout-functie aan of voer andere vereiste acties uit
+    setLoginSuccess(false);
+    setEmail('');
+    setPassword('');
+    setIsAccountOpen(false);
+  };
+
   return (
     <div className="login-container">
-      <button className="login-button" onClick={toggleForm}>
-        Login
-      </button>
+      {loginSuccess ? (
+        <button className="login-button" onClick={toggleAccount}>
+          Account
+        </button>
+      ) : (
+        <button className={`login-button ${isFormOpen ? 'active' : ''}`} onClick={toggleForm}>
+          {isFormOpen ? 'Close' : 'Login'}
+        </button>
+      )}
       {isFormOpen && (
         <div className="login-form">
           <button className="close-button" onClick={toggleForm}>
@@ -62,6 +91,27 @@ const Login = ({ onLogout }) => {
             </div>
             <button type="button" onClick={handleLogin}>
               Login
+            </button>
+          </form>
+        </div>
+      )}
+      {isAccountOpen && (
+        <div className="account-form">
+          <button className="close-button" onClick={toggleAccount}>
+            X
+          </button>
+          <h2>Account</h2>
+          <form>
+            <div className="form-group">
+              <label htmlFor="name">Name:</label>
+              <input type="text" id="name" value={name} onChange={handleNameChange} />
+            </div>
+            <div className="form-group">
+              <label htmlFor="new-password">New Password:</label>
+              <input type="password" id="new-password" value={newPassword} onChange={handleNewPasswordChange} />
+            </div>
+            <button type="button" onClick={handleLogout}>
+              Logout
             </button>
           </form>
         </div>
