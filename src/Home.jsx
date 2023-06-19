@@ -24,7 +24,7 @@ const Home = () => {
     <div>
       <Header />
       {user ? (
-        <p>Welcome, {user.email}!</p>
+        <p></p>
       ) : (
         <Login />
       )}
