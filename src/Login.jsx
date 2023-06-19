@@ -52,13 +52,13 @@ const Login = ({ onLogout }) => {
   const handleNewPasswordChange = (event) => {
     setNewPassword(event.target.value);
   };
+
   const handleLogout = () => {
-    // Voer hier de logica uit voor uitloggen
-    // Roep de onLogout-functie aan of voer andere vereiste acties uit
     setLoginSuccess(false);
     setEmail('');
     setPassword('');
     setIsAccountOpen(false);
+    onLogout(); // Call the onLogout function or any other necessary actions
   };
 
   return (
@@ -92,11 +92,14 @@ const Login = ({ onLogout }) => {
             <button type="button" onClick={handleLogin}>
               Login
             </button>
+            <p>
+              Don't have an account yet? <a href="/signup">Sign up here!</a>
+            </p>
           </form>
         </div>
       )}
       {isAccountOpen && (
-        <div className="account-form">
+        <div className="login-form">
           <button className="close-button" onClick={toggleAccount}>
             X
           </button>
@@ -115,6 +118,9 @@ const Login = ({ onLogout }) => {
             </button>
           </form>
         </div>
+      )}
+      {loginSuccess && (
+        <p className="welcome-message">Welcome, {email}!</p>
       )}
     </div>
   );
