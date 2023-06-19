@@ -24,7 +24,7 @@ function App() {
 
   return (
     <Router>
-      <div>
+      <div className='header'>
         <section>
           <Routes>
             <Route path="/" element={<Home />} />
@@ -34,7 +34,6 @@ function App() {
         </section>
       </div>
     </Router>
-
 
   );
 
