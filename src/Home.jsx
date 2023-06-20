@@ -2,8 +2,11 @@ import React, { useEffect, useState } from 'react';
 import { auth } from '../src/config/firebase';
 import Header from '../src/componenten/header';
 import Login from './Login';
+import PostForm from './componenten/postForm';
 
 const Home = () => {
+
+  
   const [user, setUser] = useState(null);
 
   useEffect(() => {
@@ -29,7 +32,7 @@ const Home = () => {
         <Login />
       )}
       <div>
-        
+        <PostForm />    
       </div>
     </div>
   );
