@@ -34,9 +34,7 @@
     cursor: pointer;
   }
   
-  .login-form button:hover {
-    background-color: #555;
-  }
+  
   
   .login-form .success-message {
     margin-bottom: 10px;
@@ -59,4 +57,8 @@
 
   .welcome-message{
     color: white;
+  }
+
+  .form{
+    color: black;
   }

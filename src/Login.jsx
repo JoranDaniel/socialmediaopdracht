@@ -77,7 +77,7 @@ const Login = ({ onLogout }) => {
           <button className="close-button" onClick={toggleForm}>
             X
           </button>
-          <h2>Login</h2>
+          <h2 className='form'>Login</h2>
           {loginSuccess && <p className="success-message">Login successful!</p>}
           {errorMessage && <p className="error-message">{errorMessage}</p>}
           <form>
@@ -92,7 +92,7 @@ const Login = ({ onLogout }) => {
             <button type="button" onClick={handleLogin}>
               Login
             </button>
-            <p>
+            <p className='form'>
               Don't have an account yet? <a href="/signup">Sign up here!</a>
             </p>
           </form>
