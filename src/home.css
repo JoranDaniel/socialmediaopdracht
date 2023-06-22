@@ -1,0 +1,130 @@
+*{
+  padding: 0;
+  margin: 0;
+  text-decoration: none;
+  
+}
+
+.post-list {
+    list-style: none;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    
+  }
+  
+  .post {
+    background-color: #f2f2f2;
+    padding: 16px;
+    margin-bottom: 16px;
+    border-radius: 4px;
+    background-color: rgb(58, 41, 41);
+    color: white;
+    width: 200px;
+    margin-left: 20px;
+  }
+  
+  .post-header {
+    display: flex;
+    align-items: center;
+    margin-bottom: 8px;
+  }
+  
+  
+  .post-info {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .user-name {
+    font-weight: bold;
+  }
+  
+ 
+  
+  .post-text {
+    margin-top: 8px;
+  }
+
+  .foto{
+    width: 200px;
+    display: flex
+    
+  }
+
+    
+
+  .background{
+    background: linear-gradient(#FF00C7, #9198e5);
+    min-height: 712px;
+  }
+
+  h2,p{
+    display: flex;
+    justify-content: center;
+    color: white;
+  }
+  
+  ul{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    list-style: none;
+  margin-left: 20px;
+  color: white;
+  /* css om de lijst weer onder elkaar te zetten */
+  padding: .3em.6em;
+  
+  }
+
+  .button{
+    background-color: black;
+  }
+  
+
+  .li {
+    margin-left: 20px;
+  }
+
+  .button1{
+    background-color: #2A2929;
+    color: white;
+    width: 120px;
+    height: 50px;
+    border-radius: 100px;
+    text-align: 20px;
+    margin-left: 46%;
+    
+  }
+
+  .button1:hover{
+    background-color: #4f4949;
+    color: white;
+    width: 120px;
+    height: 50px;
+    border-radius: 100px;
+    text-align: 20px;
+    
+    
+    
+  }
+
+  input{
+ display: flex;
+ justify-content: center;
+ overflow: hidden;
+  }
+
+  .login-form{
+    overflow: hidden;
+    margin-left: 600px;
+  }
+
+  .searchbar{
+    margin-left: 600px;
+    margin-top: 20px;
+    width: 400px;
+    border-radius: 20px;
+    height: 20px;
+  }
