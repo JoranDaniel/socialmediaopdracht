@@ -1,64 +1,464 @@
+.titel{
+  color: white;
+}
 
+.login-form{
   
-  .login-form h2 {
-    margin-bottom: 20px;
-    text-align: center;
-  }
-  
-  .login-form .form-group {
-    margin-bottom: 20px;
-  }
-  
-  .login-form label {
-    display: block;
-    margin-bottom: 5px;
-  }
-  
-  .login-form input[type="email"],
-  .login-form input[type="password"] {
-    width: 100%;
-    padding: 8px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-  }
-  
-  .login-form button {
-    display: block;
-    width: 100%;
-    padding: 8px;
-    margin-top: 10px;
-    background-color: #333;
-    color: #fff;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-  }
-  
-  
-  
-  .login-form .success-message {
-    margin-bottom: 10px;
-    color: green;
-  }
-  
-  .login-form .error-message {
-    margin-bottom: 10px;
-    color: red;
-  }
-  
+  justify-content: center;
+  align-items: center;
+  background-color: #262626;
+  width: 500px;
+  border-radius: 20px;
+  height: 450px;
 
-  .login-container{
+}
+
+
+
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  text-decoration: none;
+}
+
+.headersidebar {
+  height: 10%;
+  min-height: 1000px;
+  width: 200px;
+  background-color: #262626;
+}
+
+body {
+  background: linear-gradient(#FF00C7, #FE10CA);
+  display: flex;
+  flex-direction: column;
+}
+
+.logo {
+  height: 50px;
+  width: 90px;
+  margin-left: 50px;
+  margin-top: 30px;
+}
+
+.loginbuttonGoogle {
+  height: 50px;
+  width: 200px;
+  background-color: white;
+  border: 1px solid #262626;
+  border-radius: 5px;
+  margin-top: 30px;
+  margin-left: 20px;
+  color: black;
+  font-size: 20px;
+  font-family: 'Roboto', sans-serif;
+  position: absolute;
+  top: 0;
+  right: 0;
+  margin-right: 20px;
+}
+
+
+
+.logoutButton {
+  height: 50px;
+  width: 100px;
+  background-color: white;
+  border: 1px solid #262626;
+  border-radius: 5px;
+  margin-top: 30px;
+  margin-left: 20px;
+  color: black;
+  font-size: 20px;
+  font-family: 'Roboto', sans-serif;
+  position: absolute;
+  top: 0;
+  right: 0;
+  margin-right: 20px;
+}
+
+.white {
+  color: white;
+  display: flex;
+  justify-content: center;
+}
+
+.invoer {
+  background-color: white;
+  height: 30px;
+  border-radius: 5px;
+  margin-top: 5px;
+  margin-left: 15px;
+}
+
+.invoer1 {
+  background-color: white;
+  height: 50px;
+  border-radius: 5px;
+  margin-top: 5px;
+  margin-left: 15px;
+}
+
+.buttonreview {
+  background-color: #FE10CA;
+  height: 30px;
+  border-radius: 5px;
+  margin-top: 5px;
+  margin-left: 50px;
+  color: white;
+}
+
+.buttonreview:hover {
+  background-color: #d377bf;
+  height: 30px;
+  border-radius: 5px;
+  margin-top: 5px;
+  margin-left: 50px;
+  color: white;
+}
+
+.reviewItem {
+  background-color: #3A3939;
+  color: white;
+  margin: 20px;
+  min-width: 240px;
+  min-height: 300px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border-radius: 5px;
+  flex-basis: 48%;
+    position: relative;
+    top: -140px;
+   
+}
+
+.test {
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content: space-between;
+}
+
+.reviewItem {
+  flex-basis: 48%;
+}
+
+.imagefoto {
+  width: 180px;
+  display: flex;
+  justify-content: center;
+}
+
+.naam {
+  margin-bottom: 20px;
+  margin-top: 20px;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+}
+
+.test,
+.headersidebar {
+  flex: 5;
+}
+
+.reviewlist {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  min-width: 100%; 
+}
+.header {
+  background-color: #262626;
+  height: 100px;
+}
+
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+.headersidebar {
+  height: 10%;
+  min-height: 1000px;
+  width: 200px;
+  background-color: #262626;
+}
+
+body {
+  background: linear-gradient(#FF00C7, #FE10CA);
+  display: flex;
+  flex-direction: column;
+}
+
+.logo {
+  height: 50px;
+  width: 90px;
+  margin-left: 50px;
+  margin-top: 30px;
+}
+
+.loginbuttonGoogle {
+  height: 50px;
+  width: 190px;
+  background-color: white;
+  border: 1px solid #262626;
+  border-radius: 5px;
+  margin-top: 30px;
+  margin-left: 20px;
+  color: black;
+  font-size: 20px;
+  font-family: 'Roboto', sans-serif;
+  position: absolute;
+  top: 0;
+  right: 0;
+  margin-right: 20px;
+}
+
+.loginbuttonNormaal{
+  height: 50px;
+  width: 100px;
+  background-color: white;
+  border: 1px solid #262626;
+  border-radius: 5px;
+  margin-top: 30px;
+  margin-left: 20px;
+  color: black;
+  font-size: 20px;
+  font-family: 'Roboto', sans-serif;
+  position: absolute;
+  top: 0;
+  right: 0;
+  margin-right: 240px;
+}
+
+a{
+  color: black;
+}
+
+.ingelogdegbruiker {
+  height: 50px;
+  width: 200px;
+  border: 1px solid #262626;
+  border-radius: 5px;
+  
+  margin-left: 20px;
+  color: black;
+  font-size: 20px;
+  font-family: 'Roboto', sans-serif;
+  position: absolute;
+  top: 0;
+  right: 0;
+  margin-right: 345px;
+  color: white;
+  display: flex;
+  justify-content: center;
+  margin-top: 40px;
+}
+
+.logoutButton {
+  height: 40px;
+  width: 100px;
+  background-color: white;
+  border: 1px solid #262626;
+  border-radius: 5px;
+margin-bottom: 50px;
+  margin-left: 20px;
+  color: black;
+  font-size: 20px;
+  font-family: 'Roboto', sans-serif;
+  position: absolute;
+  top: 0;
+  right: 0;
+  margin-right: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.white {
+  color: white;
+  display: flex;
+  justify-content: center;
+}
+
+.invoer {
+  background-color: white;
+  height: 30px;
+  border-radius: 5px;
+  margin-top: 5px;
+  margin-left: 15px;
+}
+
+.invoer1 {
+  background-color: white;
+  height: 50px;
+  border-radius: 5px;
+  margin-top: 5px;
+  margin-left: 15px;
+}
+
+.buttonreview {
+  background-color: #FE10CA;
+  height: 30px;
+  border-radius: 5px;
+  margin-top: 5px;
+  margin-left: 50px;
+  color: white;
+}
+
+.buttonreview:hover {
+  background-color: #d377bf;
+  height: 30px;
+  border-radius: 5px;
+  margin-top: 5px;
+  margin-left: 50px;
+  color: white;
+}
+
+.reviewItem {
+  background-color: #3A3939;
+  color: white;
+  margin: 20px;
+  min-width: 240px;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border-radius: 5px;
+  height: 600px;
+}
+
+.reviewList {
+  display: flex;
+  flex-wrap: wrap;
+    flex-direction: column;
+    column-count: 1;
+    
+
+    
     width: 100%;
-    max-height: 1500px;
-    display: flex;
-    justify-content: center;
+
+    margin-left: 300px;
+    
+}
+
+.reviewItem {
+  flex-basis: 48%;
+  margin-bottom: 20px;
+  margin-top: 200px;
+}
+
+
+
+.imagefoto {
+  width: 180px;
+  display: flex;
+  justify-content: center;
+  min-height: 200px;
+}
+
+.naam {
+  margin-bottom: 20px;
+  margin-top: 20px;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+}
+
+
+.reviewlist {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  min-width: 100%; 
+
+}
+
+.test{
+  height: 1000px;
+}
+
+
+.formvoorlogin{
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+ align-items: center;
+
  
-  }
+ 
+}
 
-  .welcome-message{
-    color: white;
-  }
+.zwartweg{
+  background-color: transparent;
+}
 
-  .form{
-    color: black;
-  }
+.login-container{
+  
+  height: 100%;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  margin-top: 100px;
+  
+}
+
+.titelpagina{
+  font-size: 50px;
+  display: flex;
+ justify-content: center;
+ margin-top: 50px;
+}
+
+.inputuser{
+  height: 40px;
+  
+
+  margin-bottom: 10px;
+  border-radius: 5px;
+  display: flex;
+  width: 400px;
+
+
+}
+
+form{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+.inputformtype{
+  width: 150px;
+  height: 40px;
+  border-radius: 5px;
+  background-color: #FE049A;
+  color: white;
+  margin-top: 20px;
+}
+
+.blue{
+  color: lightblue;
+}
+
+.login-form1{
+  justify-content: center;
+  align-items: center;
+  background-color: #262626;
+  width: 500px;
+  border-radius: 20px;
+  height: 510px;
+}

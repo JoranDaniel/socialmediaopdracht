@@ -1,130 +1,419 @@
-*{
+.header {
+  background-color: #262626;
+  height: 100px;
+}
+
+* {
   padding: 0;
   margin: 0;
+  box-sizing: border-box;
   text-decoration: none;
+}
+
+.headersidebar {
+  height: 10%;
+  min-height: 1000px;
+  width: 200px;
+  background-color: #262626;
+}
+
+body {
+  background: linear-gradient(#FF00C7, #FE10CA);
+  display: flex;
+  flex-direction: column;
+}
+
+.logo {
+  height: 50px;
+  width: 90px;
+  margin-left: 50px;
+  margin-top: 30px;
+}
+
+.loginbuttonGoogle {
+  height: 50px;
+  width: 200px;
+  background-color: white;
+  border: 1px solid #262626;
+  border-radius: 5px;
+  margin-top: 30px;
+  margin-left: 20px;
+  color: black;
+  font-size: 20px;
+  font-family: 'Roboto', sans-serif;
+  position: absolute;
+  top: 0;
+  right: 0;
+  margin-right: 20px;
+}
+
+.ingelogdegbruiker {
+  height: 50px;
+  width: 200px;
+  border: 1px solid #262626;
+  border-radius: 5px;
+  margin-top: 30px;
+  margin-left: 20px;
+  color: black;
+  font-size: 20px;
+  font-family: 'Roboto', sans-serif;
+  position: absolute;
+  top: 0;
+  right: 0;
+  margin-right: 90px;
+  color: white;
+}
+
+.logoutButton {
+  height: 50px;
+  width: 100px;
+  background-color: white;
+  border: 1px solid #262626;
+  border-radius: 5px;
+  margin-top: 30px;
+  margin-left: 20px;
+  color: black;
+  font-size: 20px;
+  font-family: 'Roboto', sans-serif;
+  position: absolute;
+  top: 0;
+  right: 0;
+  margin-right: 20px;
+}
+
+.white {
+  color: white;
+  display: flex;
+  justify-content: center;
+}
+
+.invoer {
+  background-color: white;
+  height: 30px;
+  border-radius: 5px;
+  margin-top: 5px;
+  margin-left: 15px;
+}
+
+.invoer1 {
+  background-color: white;
+  height: 50px;
+  border-radius: 5px;
+  margin-top: 5px;
+  margin-left: 15px;
+}
+
+.buttonreview {
+  background-color: #FE10CA;
+  height: 30px;
+  border-radius: 5px;
+  margin-top: 5px;
+  margin-left: 50px;
+  color: white;
+}
+
+.buttonreview:hover {
+  background-color: #d377bf;
+  height: 30px;
+  border-radius: 5px;
+  margin-top: 5px;
+  margin-left: 50px;
+  color: white;
+}
+
+/* .reviewItem {
+  background-color: #3A3939;
+  color: white;
+  margin: 20px;
+  min-width: 240px;
+  min-height: 300px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border-radius: 5px;
+} */
+
+.test {
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content: space-between;
+}
+
+
+
+.imagefoto {
+  width: 180px;
+  display: flex;
+  justify-content: center;
+}
+
+.naam {
+  margin-bottom: 20px;
+  margin-top: 20px;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+}
+
+.test,
+.headersidebar {
+  flex: 5;
+}
+
+.reviewlist {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  min-width: 100%; 
+}
+.header {
+  background-color: #262626;
+  height: 100px;
+}
+
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+.headersidebar {
+  height: 10%;
+  min-height: 1000px;
+  width: 200px;
+  background-color: #262626;
+}
+
+body {
+  background: linear-gradient(#FF00C7, #FE10CA);
+  display: flex;
+  flex-direction: column;
+}
+
+.logo {
+  height: 50px;
+  width: 90px;
+  margin-left: 50px;
+  margin-top: 30px;
+}
+
+.loginbuttonGoogle {
+  height: 50px;
+  width: 190px;
+  background-color: white;
+  border: 1px solid #262626;
+  border-radius: 5px;
+  margin-top: 30px;
+  margin-left: 20px;
+  color: black;
+  font-size: 20px;
+  font-family: 'Roboto', sans-serif;
+  position: absolute;
+  top: 0;
+  right: 0;
+  margin-right: 20px;
+}
+
+.loginbuttonNormaal{
+  height: 50px;
+  width: 100px;
+  background-color: white;
+  border: 1px solid #262626;
+  border-radius: 5px;
+  margin-top: 30px;
+  margin-left: 20px;
+  color: black;
+  font-size: 20px;
+  font-family: 'Roboto', sans-serif;
+  position: absolute;
+  top: 0;
+  right: 0;
+  margin-right: 240px;
+}
+
+.logoutButton1{
+  height: 40px;
+  width: 190px;
+  background-color: white;
+  border: 1px solid #262626;
+  border-radius: 5px;
+  margin-top: 30px;
+  margin-left: 400px;
+  color: black;
+  font-size: 20px;
+  font-family: 'Roboto', sans-serif;
+  position: absolute;
+  top: 0;
+  right: 0;
+  margin-right: 135px;
   
 }
 
-.post-list {
-    list-style: none;
-    padding: 0;
-    display: flex;
-    justify-content: center;
-    
-  }
-  
-  .post {
-    background-color: #f2f2f2;
-    padding: 16px;
-    margin-bottom: 16px;
-    border-radius: 4px;
-    background-color: rgb(58, 41, 41);
-    color: white;
-    width: 200px;
-    margin-left: 20px;
-  }
-  
-  .post-header {
-    display: flex;
-    align-items: center;
-    margin-bottom: 8px;
-  }
-  
-  
-  .post-info {
-    display: flex;
-    flex-direction: column;
-  }
-  
-  .user-name {
-    font-weight: bold;
-  }
-  
- 
-  
-  .post-text {
-    margin-top: 8px;
-  }
+a{
+  color: black;
+}
 
-  .foto{
-    width: 200px;
-    display: flex
-    
-  }
-
-    
-
-  .background{
-    background: linear-gradient(#FF00C7, #9198e5);
-    min-height: 712px;
-  }
-
-  h2,p{
-    display: flex;
-    justify-content: center;
-    color: white;
-  }
+.ingelogdegbruiker {
+  height: 50px;
+  width: 200px;
+  border: 1px solid #262626;
+  border-radius: 5px;
   
-  ul{
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-wrap: wrap;
-    list-style: none;
   margin-left: 20px;
+  color: black;
+  font-size: 20px;
+  font-family: 'Roboto', sans-serif;
+  position: absolute;
+  top: 0;
+  right: 0;
+  margin-right: 20%;
   color: white;
-  /* css om de lijst weer onder elkaar te zetten */
-  padding: .3em.6em;
-  
-  }
+  display: flex;
+  justify-content: center;
+  margin-top: 40px;
+}
 
-  .button{
-    background-color: black;
-  }
-  
+.logoutButton {
+  height: 40px;
+  width: 100px;
+  background-color: white;
+  border: 1px solid #262626;
+  border-radius: 5px;
+margin-bottom: 50px;
+  margin-left: 20px;
+  color: black;
+  font-size: 20px;
+  font-family: 'Roboto', sans-serif;
+  position: absolute;
+  top: 0;
+  right: 0;
+  margin-right: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
 
-  .li {
-    margin-left: 20px;
-  }
+.white {
+  color: white;
+  display: flex;
+  justify-content: center;
+}
 
-  .button1{
-    background-color: #2A2929;
-    color: white;
-    width: 120px;
-    height: 50px;
-    border-radius: 100px;
-    text-align: 20px;
-    margin-left: 46%;
+.invoer {
+  background-color: white;
+  height: 30px;
+  border-radius: 5px;
+  margin-top: 5px;
+  margin-left: 15px;
+}
+
+.invoer1 {
+  background-color: white;
+  height: 50px;
+  border-radius: 5px;
+  margin-top: 5px;
+  margin-left: 15px;
+}
+
+.buttonreview {
+  background-color: #FE10CA;
+  height: 30px;
+  border-radius: 5px;
+  margin-top: 5px;
+  margin-left: 50px;
+  color: white;
+}
+
+.buttonreview:hover {
+  background-color: #d377bf;
+  height: 30px;
+  border-radius: 5px;
+  margin-top: 5px;
+  margin-left: 50px;
+  color: white;
+}
+
+/* .reviewItem {
+  background-color: #3A3939;
+  color: white;
+  margin: 20px;
+  min-width: 240px;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border-radius: 5px;
+  height: 600px;
+} */
+
+.reviewList {
+  display: flex;
+  flex-wrap: wrap;
+    flex-direction: column;
+    column-count: 1;
     
-  }
 
-  .button1:hover{
-    background-color: #4f4949;
-    color: white;
-    width: 120px;
-    height: 50px;
-    border-radius: 100px;
-    text-align: 20px;
     
+    width: 100%;
+
+    margin-left: 300px;
     
-    
-  }
+}
 
-  input{
- display: flex;
- justify-content: center;
- overflow: hidden;
-  }
 
-  .login-form{
-    overflow: hidden;
-    margin-left: 600px;
-  }
 
-  .searchbar{
-    margin-left: 600px;
-    margin-top: 20px;
-    width: 400px;
-    border-radius: 20px;
-    height: 20px;
-  }
+
+.imagefoto {
+  width: 180px;
+  display: flex;
+  justify-content: center;
+  min-height: 200px;
+}
+
+.naam {
+  margin-bottom: 20px;
+  margin-top: 20px;
+  margin-left: 10px;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+}
+
+
+.reviewlist {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  min-width: 100%; 
+
+}
+
+.test{
+  height: 1000px;
+}
+
+.button{
+  width: 100px;
+  margin-top: 10px;
+  border-radius: 5px;
+  height: 30px;
+  background-color: #FE049A;
+  color: white;
+}
+
+.searchBar{
+  margin-left: 200px;
+  display: flex;
+  justify-content: center;
+  position: relative;
+  top: -50px; /* Pas de waarde aan naar jouw behoefte */
+  height: 40px;
+  border-radius: 15px;
+  width: 500px;
+}

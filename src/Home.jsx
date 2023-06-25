@@ -1,47 +1,24 @@
 import React, { useEffect, useState } from 'react';
 import { auth, firestore } from '../src/config/firebase';
-import Header from '../src/componenten/header';
-import Login from './Login';
 import '../src/home.css';
+import { GoogleAuthProvider } from 'firebase/auth';
+import DRLogo from './images/DRLogo.png';
 
 const Home = () => {
   const [user, setUser] = useState(null);
-  const [users, setUsers] = useState([]);
-  const [loading, setLoading] = useState(true);
-  const [privacyButtonText, setPrivacyButtonText] = useState('');
-  const [accountPrivacy, setAccountPrivacy] = useState('');
-  const [posts, setPosts] = useState([]);
-  const [newPostText, setNewPostText] = useState('');
-  const [privacy, setPrivacy] = useState(false);
-  const [searchQuery, setSearchQuery] = useState('');
+  const [reviewTitle, setReviewTitle] = useState('');
+  const [reviewImage, setReviewImage] = useState('');
+  const [reviewDescription, setReviewDescription] = useState('');
+  const [reviews, setReviews] = useState([]);
+  const [privacy, setPrivacy] = useState(false); // Privacy flag
+  const [searchQuery, setSearchQuery] = useState(''); // Search query state
 
   useEffect(() => {
-    const storedUser = localStorage.getItem('user');
-    if (storedUser) {
-      setUser(JSON.parse(storedUser));
-    }
-
     const unsubscribe = auth.onAuthStateChanged((user) => {
       if (user) {
-        // User is logged in
-        setUser(user);
-        const storedPrivacy = localStorage.getItem('privacy');
-        if (storedPrivacy !== null) {
-          setPrivacy(storedPrivacy === 'true');
-        } else {
-          setPrivacy(user.privacy || false);
-        }
-        localStorage.setItem('user', JSON.stringify(user)); // Sla gebruikersgegevens op in localStorage
+        setUser(user.displayName);
       } else {
-        // User is logged out
         setUser(null);
-        setPrivacy(false);
-        setUsers([]);
-        setLoading(true);
-        setPosts([]);
-        setNewPostText('');
-        localStorage.removeItem('user'); // Verwijder opgeslagen gebruikersgegevens bij uitloggen
-        localStorage.removeItem('privacy'); // Verwijder opgeslagen privacy-instelling bij uitloggen
       }
     });
 
@@ -49,172 +26,172 @@ const Home = () => {
   }, []);
 
   useEffect(() => {
-    const fetchUsers = async () => {
-      try {
-        const usersSnapshot = await firestore.collection('users').get();
-        const usersData = usersSnapshot.docs.map((doc) => ({
-          uid: doc.id,
+    const unsubscribe = firestore
+      .collection('reviews')
+      .onSnapshot((snapshot) => {
+        const reviewsData = snapshot.docs.map((doc) => ({
+          id: doc.id,
           ...doc.data(),
         }));
-        setUsers(usersData);
-        setLoading(false);
-      } catch (error) {
-        console.error('Fout bij het ophalen van gebruikers:', error);
-      }
-    };
+        setReviews(reviewsData);
+      });
 
-    fetchUsers();
+    return () => unsubscribe();
   }, []);
 
-  useEffect(() => {
-    const fetchPosts = async () => {
-      try {
-        const postsSnapshot = await firestore.collection('posts').get();
-        const postsData = postsSnapshot.docs.map((doc) => ({
-          postId: doc.id,
-          ...doc.data(),
-        }));
-        setPosts(postsData);
-      } catch (error) {
-        console.error('Fout bij het ophalen van de posts:', error);
-      }
+  const handleSignInWithGoogle = () => {
+    const provider = new GoogleAuthProvider();
+    auth.signInWithRedirect(provider);
+  };
+
+  const handleSignIn = () => {
+    // Implement logic for regular sign in here
+  };
+
+  const handleSignOut = () => {
+    auth.signOut();
+  };
+
+  const handleSubmitReview = (e) => {
+    e.preventDefault();
+
+    const reviewData = {
+      title: reviewTitle,
+      image: reviewImage,
+      description: reviewDescription,
+      user: user, // Include user name in review data
+      privacy: privacy, // Include privacy setting in review data
     };
 
-    fetchPosts();
-  }, []);
-
-  useEffect(() => {
-    if (user) {
-      setPrivacyButtonText(privacy ? 'Switch Privacy: Private' : 'Switch Privacy: Public');
-      setAccountPrivacy(privacy ? 'Private' : 'Public');
-      localStorage.setItem('privacy', privacy.toString()); // Sla privacy-instelling op in localStorage
-    }
-  }, [user, privacy]);
-
-  const togglePrivacy = async () => {
-    try {
-      if (user) {
-        const userRef = firestore.collection('users').doc(user.uid);
-        const userData = await userRef.get();
-        const currentPrivacyStatus = userData.data().privacy;
-        const updatedPrivacyStatus = !currentPrivacyStatus;
-
-        await userRef.update({
-          privacy: updatedPrivacyStatus,
-        });
-
-        setPrivacy(updatedPrivacyStatus);
-        setPrivacyButtonText(updatedPrivacyStatus ? 'Switch Privacy: Private' : 'Switch Privacy: Public');
-        setAccountPrivacy(updatedPrivacyStatus ? 'Private' : 'Public');
-        localStorage.setItem('privacy', updatedPrivacyStatus.toString()); // Sla bijgewerkte privacy-instelling op in localStorage
-      } else {
-        console.error('Fout bij het bijwerken van de privacystatus: Geen ingelogde gebruiker gevonden.');
-      }
-    } catch (error) {
-      console.error('Fout bij het bijwerken van de privacystatus:', error);
-    }
+    firestore
+      .collection('reviews')
+      .add(reviewData)
+      .then(() => {
+        console.log('Review is geplaatst');
+        setReviewTitle('');
+        setReviewImage('');
+        setReviewDescription('');
+      })
+      .catch((error) => {
+        console.error('Fout bij het plaatsen van de review:', error);
+      });
   };
 
-  const createPost = async () => {
-    try {
-      if (user) {
-        const postRef = firestore.collection('posts').doc();
-        await postRef.set({
-          userId: user.uid,
-          userName: user.displayName, // Gebruik de weergavenaam van de ingelogde gebruiker
-          userEmail: privacy ? user.email : '', // Verberg het e-mailadres als het account privé is
-          text: newPostText,
-        });
-        setNewPostText('');
-
-        // Fetch de bijgewerkte posts
-        const postsSnapshot = await firestore.collection('posts').get();
-        const updatedPosts = postsSnapshot.docs.map((doc) => ({
-          postId: doc.id,
-          ...doc.data(),
-        }));
-        setPosts(updatedPosts);
-      } else {
-        console.error('Geen ingelogde gebruiker gevonden.');
-      }
-    } catch (error) {
-      console.error('Fout bij het maken van de post:', error);
-    }
+  const handleTogglePrivacy = () => {
+    setPrivacy(!privacy);
   };
 
-  const handleSearchChange = (e) => {
+  const handleSearch = (e) => {
     setSearchQuery(e.target.value);
   };
 
-  const filteredUsers = users.filter((userData) => {
-    const { email } = userData;
-    return email.toLowerCase().includes(searchQuery.toLowerCase());
+  const filteredReviews = reviews.filter((review) =>
+    review.title.toLowerCase().includes(searchQuery.toLowerCase())
+  );
+
+  const filteredReviewsWithPrivacy = filteredReviews.filter((review) => {
+    if (privacy) {
+      return review.user !== user;
+    } else {
+      return true;
+    }
   });
 
   return (
-    <div className='background'>
-      <Header />
-      {user ? (
-        <div>
-          <p>Your account is: {accountPrivacy}</p>
-          <div className="search-bar">
-            <input className='searchbar'
-              type="text"
-              placeholder="Search users..."
-              value={searchQuery}
-              onChange={handleSearchChange}
-            />
-          </div>
-          <h2>Gebruikers:</h2>
-          {loading ? (
-            <p>Loading...</p>
-          ) : (
-            <ul className='center'>
-              {filteredUsers.map((userData) => (
-                (userData.uid !== user.uid || privacy) && (
-                  <li key={userData.uid}>{userData.email}</li>
-                )
-              ))}
-            </ul>
+    <body>
+      <div className='header'>
+        <img className='logo' src={DRLogo} alt='Beschrijvende tekst' />
+
+        <input
+          className='searchBar'
+          type='text'
+          placeholder='Zoek reviews...'
+          value={searchQuery}
+          onChange={handleSearch}
+        />
+        {user ? (
+          <>
+            <p className='ingelogdegbruiker'>Welkom, {user}</p>
+            {privacy ? (
+              <button className='logoutButton1' onClick={handleTogglePrivacy}>
+                Toggle Privacy: ON
+              </button>
+            ) : (
+              <button className='logoutButton1' onClick={handleTogglePrivacy}>
+                Toggle Privacy: OFF
+              </button>
+            )}
+            <button className='logoutButton' onClick={handleSignOut}>
+              Uitloggen
+            </button>
+          </>
+        ) : (
+          <>
+            <a href="/login">
+              <button className='loginbuttonNormaal' onClick={handleSignIn}>
+                Inloggen
+              </button>
+            </a>
+            <button className='loginbuttonGoogle' onClick={handleSignInWithGoogle}>
+              Inloggen met Google
+            </button>
+          </>
+        )}
+      </div>
+      <div className="container">
+        <div className='headersidebar'>
+          {user && (
+            <>
+              <h1 className='white'>Review plaatsen</h1>
+              <form className='reviewForm' onSubmit={handleSubmitReview}>
+                <input
+                  className='invoer'
+                  type='text'
+                  placeholder='Titel'
+                  value={reviewTitle}
+                  onChange={(e) => setReviewTitle(e.target.value)}
+                  required
+                />
+                <input
+                  className='invoer'
+                  type='text'
+                  placeholder='Afbeelding URL'
+                  value={reviewImage}
+                  onChange={(e) => setReviewImage(e.target.value)}
+                  required
+                />
+                <textarea
+                  className='invoer'
+                  placeholder='Beschrijving'
+                  value={reviewDescription}
+                  onChange={(e) => setReviewDescription(e.target.value)}
+                  required
+                ></textarea>
+                <button className='button' type='submit'>
+                  Plaats review
+                </button>
+              </form>
+            </>
           )}
-          <button className='button1' onClick={togglePrivacy}>{privacyButtonText}</button>
-          <h2>Posts:</h2>
-          <div>
-            <input
-              type="text"
-              placeholder="Enter your post"
-              value={newPostText}
-              onChange={(e) => setNewPostText(e.target.value)}
-            />
-            <button onClick={createPost}>Post</button>
+
+          <div className='headersidebar1'>
+            <div className='test'>
+              <div className='reviewList'>
+                {filteredReviewsWithPrivacy.map((review) => (
+                  <div key={review.id} className='reviewItem'>
+                    <h3 className='naam'>{review.title}</h3>
+                    <img className='imagefoto' src={review.image} alt='Review afbeelding' />
+                    <p className='naam'>Beschrijving: {review.description}</p>
+                    <p className='naam'>★★★☆☆</p>
+                    <p className='naam'>Geplaatst door: {review.user}</p> {/* Display user name for all posts */}
+                  </div>
+                ))}
+              </div>
+            </div>
           </div>
-          {privacy ? (
-            <ul className="post-list">
-              {posts.map((post) => (
-                (post.userId === user.uid || !privacy) && (
-                  <li className="post" key={post.postId}>
-                    <div className="post-header">
-                      <div className="post-info">
-                        <h1 className="user-email">Desktoprating<br /></h1>
-                        <span className="user-name">{post.userName}</span>
-                        <span className="user-email">Naam: {post.userEmail}</span>
-                      </div>
-                    </div>
-                    <p className="post-text">Discription: {post.text}</p>
-                    <span className="user-email">Revieuw: ★★★★☆</span>
-                    <img className='foto' src="https://www.paradigit.nl/media/1520/videokaart-pci.jpg?width=330&height=220" alt="" />
-                  </li>
-                )
-              ))}
-            </ul>
-          ) : (
-            <p>Posts are private.</p>
-          )}
         </div>
-      ) : (
-        <Login />
-      )}
-    </div>
+      </div>
+    </body>
   );
 };
 
